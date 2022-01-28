@@ -1,26 +1,47 @@
 const apiLinkBase = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-const word = "dance";
+let word = "";
 const ErrorMessage = document.getElementById("error-msg");
+const guessButton = document.getElementById("guess-button");
+const guessInput = document.getElementById("guess-value");
 let CurrentGuess = 1;
+
+const skipWordCheck = false;
+
+// Pick a word
+
+fetch('words.txt')
+    .then(response => response.text())
+    .then((data) => {
+        //console.log(data);
+        const myArray = data.split("\n");
+        word = myArray[Math.floor(Math.random() * myArray.length)].toLowerCase().trim();
+        console.log("The word is " + word);
+    });
+
 
 function SubmitGuess() {
     ErrorMessage.style.visibility = "hidden";
-    const guessInput = document.getElementById("guess-value");
+
     const guess = guessInput.value.toLowerCase();
-    const guessButton = document.getElementById("guess-button");
 
     if (guess.length !== 5) return;
 
     if (!checkWord(guess)) {
         showError("This is not a word!");
+        guessButton.style.visibility = "visible";
         return;
     }
 
     UpdateRow(CurrentGuess, guess);
-    CurrentGuess ++;
+    CurrentGuess++;
     guessInput.value = "";
 
-    if (CurrentGuess > 5 || guess === word) {
+    if (CurrentGuess > 5) {
+        guessInput.style.visibility = "hidden";
+        guessButton.style.visibility = "hidden";
+        showError("The word was " + word);
+    }
+    else if (guess === word) {
         guessInput.style.visibility = "hidden";
         guessButton.style.visibility = "hidden";
     }
@@ -37,26 +58,28 @@ function UpdateRow(rowNum, guess) {
         txt.children[0].textContent = c;
 
         if (word.charAt(row - 1) === c) {
-            txt.classList.remove("bg-gray-400");
-            txt.classList.add("bg-green-500");
+            //txt.classList.remove("letter-container");
+            txt.classList.add("green");
         }
         else if (word.includes(c)) {
-            txt.classList.remove("bg-gray-400");
-            txt.classList.add("bg-orange-500");
+            //txt.classList.remove("letter-container-orange");
+            txt.classList.add("orange");
         }
 
-        row ++;
+        row++;
     }
 
 }
 
-function checkWord(wordToCheck)
-{
+function checkWord(wordToCheck) {
+    if (skipWordCheck) return true;
+
     const url = apiLinkBase + wordToCheck
     const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", url, false ); // false for synchronous request
-    xmlHttp.send( null );
+    xmlHttp.open("GET", url, false); // false for synchronous request
+    xmlHttp.send(null);
     const resp = JSON.parse(xmlHttp.responseText)
+    console.log(resp);
     if (resp[0] === undefined) return false;
     else return true;
 }
