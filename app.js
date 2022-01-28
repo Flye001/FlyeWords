@@ -1,5 +1,6 @@
 const apiLinkBase = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 let word = "";
+let allWord;
 const ErrorMessage = document.getElementById("error-msg");
 const guessButton = document.getElementById("guess-button");
 const guessInput = document.getElementById("guess-value");
@@ -18,6 +19,11 @@ fetch('words.txt')
         console.log("The word is " + word);
     });
 
+fetch("all-words.txt")
+.then(response => response.text())
+.then((data) => {
+    allWord = data;
+});
 
 function SubmitGuess() {
     ErrorMessage.style.visibility = "hidden";
@@ -74,14 +80,17 @@ function UpdateRow(rowNum, guess) {
 function checkWord(wordToCheck) {
     if (skipWordCheck) return true;
 
-    const url = apiLinkBase + wordToCheck
-    const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false); // false for synchronous request
-    xmlHttp.send(null);
-    const resp = JSON.parse(xmlHttp.responseText)
-    console.log(resp);
-    if (resp[0] === undefined) return false;
-    else return true;
+    // const url = apiLinkBase + wordToCheck
+    // const xmlHttp = new XMLHttpRequest();
+    // xmlHttp.open("GET", url, false); // false for synchronous request
+    // xmlHttp.send(null);
+    // const resp = JSON.parse(xmlHttp.responseText)
+    // console.log(resp);
+    // if (resp[0] === undefined) return false;
+    // else return true;
+
+    if (allWord.includes(wordToCheck)) return true;
+    else return false;
 }
 
 function showError(errorText) {
