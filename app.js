@@ -10,20 +10,32 @@ const skipWordCheck = false;
 
 // Pick a word
 
-fetch('words.txt')
+fetch("all-words.txt")
     .then(response => response.text())
     .then((data) => {
-        //console.log(data);
-        const myArray = data.split("\n");
-        word = myArray[Math.floor(Math.random() * myArray.length)].toLowerCase().trim();
-        console.log("The word is " + word);
+        allWord = data;
+        ChoseWord();
     });
 
-fetch("all-words.txt")
-.then(response => response.text())
-.then((data) => {
-    allWord = data;
-});
+function ChoseWord() {
+    fetch('words.txt')
+    .then(response => response.text())
+    .then((data) => {
+        const myArray = data.split("\n");
+        word = myArray[Math.floor(Math.random() * myArray.length)].toLowerCase().trim();
+
+        if (!allWord.includes(word)) {
+            console.log("Word is invalid: " + word);
+            ChoseWord();
+        }
+        else {
+            console.log("The word is " + word);
+            guessInput.style.visibility = "visible";
+            guessButton.style.visibility = "visible";
+        }
+            
+    });
+}
 
 function SubmitGuess() {
     ErrorMessage.style.visibility = "hidden";
@@ -41,15 +53,15 @@ function SubmitGuess() {
     UpdateRow(CurrentGuess, guess);
     CurrentGuess++;
     guessInput.value = "";
-
-    if (CurrentGuess > 5) {
+    
+    if (guess === word) {
+        guessInput.style.visibility = "hidden";
+        guessButton.style.visibility = "hidden";
+    }
+    else if (CurrentGuess > 5) {
         guessInput.style.visibility = "hidden";
         guessButton.style.visibility = "hidden";
         showError("The word was " + word);
-    }
-    else if (guess === word) {
-        guessInput.style.visibility = "hidden";
-        guessButton.style.visibility = "hidden";
     }
 }
 
