@@ -22,9 +22,9 @@ function ChoseWord() {
     .then(response => response.text())
     .then((data) => {
         const myArray = data.split("\n");
-        word = myArray[Math.floor(Math.random() * myArray.length)].toLowerCase().trim();
+        word = myArray[Math.floor(Math.random() * myArray.length)].toUpperCase().trim();
 
-        if (!allWord.includes(word)) {
+        if (!allWord.includes(word.toLowerCase())) {
             console.log("Word is invalid: " + word);
             ChoseWord();
         }
@@ -40,7 +40,7 @@ function ChoseWord() {
 function SubmitGuess() {
     ErrorMessage.style.visibility = "hidden";
 
-    const guess = guessInput.value.toLowerCase();
+    const guess = guessInput.value.toUpperCase();
 
     if (guess.length !== 5) return;
 
@@ -101,7 +101,7 @@ function checkWord(wordToCheck) {
     // if (resp[0] === undefined) return false;
     // else return true;
 
-    if (allWord.includes(wordToCheck)) return true;
+    if (allWord.includes(wordToCheck.toLowerCase())) return true;
     else return false;
 }
 
