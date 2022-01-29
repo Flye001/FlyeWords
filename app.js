@@ -2,8 +2,9 @@ const apiLinkBase = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 let word = "";
 let allWord;
 const ErrorMessage = document.getElementById("error-msg");
-const guessButton = document.getElementById("guess-button");
+const guessForm = document.getElementById("guess-form");
 const guessInput = document.getElementById("guess-value");
+const playAgain = document.getElementById("play-again");
 let CurrentGuess = 1;
 
 const skipWordCheck = false;
@@ -30,8 +31,7 @@ function ChoseWord() {
         }
         else {
             console.log("The word is " + word);
-            guessInput.style.visibility = "visible";
-            guessButton.style.visibility = "visible";
+            guessForm.style.visibility = "visible";
         }
             
     });
@@ -55,13 +55,14 @@ function SubmitGuess() {
     guessInput.value = "";
     
     if (guess === word) {
-        guessInput.style.visibility = "hidden";
-        guessButton.style.visibility = "hidden";
+        guessForm.style.display = "none";
+        playAgain.style.display = "block";
     }
     else if (CurrentGuess > 5) {
-        guessInput.style.visibility = "hidden";
-        guessButton.style.visibility = "hidden";
+        //guessForm.style.visibility = "hidden";
+        guessForm.style.display = "none";
         showError("The word was " + word);
+        playAgain.style.display = "block";
     }
 }
 

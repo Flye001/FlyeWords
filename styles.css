@@ -552,10 +552,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.aspect-square {
-  aspect-ratio: 1 / 1;
-}
-
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -574,6 +570,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .place-content-center {
   place-content: center;
+}
+
+.content-center {
+  align-content: center;
 }
 
 .justify-center {

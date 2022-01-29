@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="black">
-    <link href="styles.css?version=3.0.0" rel="stylesheet">
+    <link href="styles.css?version=3.1.0" rel="stylesheet">
     <!-- <link href="test.css" rel="stylesheet"> -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script defer src="app.js?version=3.0.0"></script>
+    <script defer src="app.js?version=3.1.0"></script>
 
-    <link rel="manifest" href="manifest.json?version=1.0.0">
+    <link rel="manifest" href="manifest.json?version=3.1.0">
 </head>
 
 <body class="bg-neutral-900">
@@ -112,13 +112,16 @@
         </div>
 
         <div class="text-center mt-5">
-            <form onsubmit="SubmitGuess(); return false;">
+            <form id="guess-form" class="invisible" onsubmit="SubmitGuess(); return false;">
                 <input type="text" id="guess-value" placeholder="Enter a word" autocomplete="off"
-                    class="p-2 rounded-md text-white bg-neutral-600 invisible">
+                    class="p-2 rounded-md text-white bg-neutral-600">
                 <input type="submit" id="guess-button" value="Guess"
-                    class="bg-green-600 font-bold rounded-md p-2 cursor-pointer text-white invisible">
+                    class="bg-green-600 font-bold rounded-md p-2 cursor-pointer text-white">
             </form>
             <p class="text-red-500 font-bold invisible mt-3" id="error-msg">Error</p>
+            <input type="button" id="play-again" value="Play Again"
+                    class="bg-green-600 mx-auto font-bold rounded-md p-2 cursor-pointer text-white hidden"
+                    onclick="location.reload()">
         </div>
 
     </div>
