@@ -523,9 +523,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: auto;
 }
 
-.mx-40 {
-  margin-left: 10rem;
-  margin-right: 10rem;
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 
 .mt-10 {
@@ -534,10 +534,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .mt-3 {
@@ -554,6 +550,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hidden {
   display: none;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
 }
 
 .max-w-4xl {
@@ -611,9 +611,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -633,12 +633,24 @@ Ensure the default browser behavior of the `hidden` attribute.
 .letter-container {
   margin: auto;
   aspect-ratio: 1 / 1;
-  width: 5rem;
+  width: 2.5rem;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(38 38 38 / var(--tw-bg-opacity));
   text-align: center;
   vertical-align: middle;
+}
+
+@media (min-width: 640px) {
+  .letter-container {
+    width: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .letter-container {
+    width: 5rem;
+  }
 }
 
 .green {
@@ -652,11 +664,45 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .letter-text {
-  margin-top: 0.75rem;
-  font-size: 3rem;
-  line-height: 1;
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+  .letter-text {
+    margin-top: 0.5rem;
+  }
+
+  .letter-text {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .letter-text {
+    margin-top: 0.75rem;
+  }
+
+  .letter-text {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:mx-40 {
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
+  .sm\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 768px) {
