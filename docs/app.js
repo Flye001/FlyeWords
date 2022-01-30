@@ -46,8 +46,7 @@ function SubmitGuess() {
 
     if (!checkWord(guess)) {
         showError("This is not a word!");
-        guessButton.style.visibility = "visible";
-        return;
+        return false;
     }
 
     UpdateRow(CurrentGuess, guess);
