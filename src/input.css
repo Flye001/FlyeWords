@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.letter-container {
+    @apply bg-neutral-800 text-center align-middle aspect-square m-auto rounded-lg w-10 sm:w-14 md:w-20 
+}
+
+.green {
+    @apply bg-green-500
+}
+
+.orange {
+    @apply bg-orange-500
+}
+
+
+.letter-text {
+    @apply mt-1 text-white text-lg sm:text-3xl sm:mt-2 md:mt-3 md:text-5xl
+}

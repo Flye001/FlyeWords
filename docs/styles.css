@@ -572,10 +572,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   place-content: center;
 }
 
-.content-center {
-  align-content: center;
-}
-
 .justify-center {
   justify-content: center;
 }
