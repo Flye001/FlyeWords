@@ -68,6 +68,8 @@ function SubmitGuess() {
 function UpdateRow(rowNum, guess) {
     if (guess.length !== 5) return;
 
+    let tempWord = word;
+
     let row = 1
     for (const c of guess) {
         const elemId = "r" + rowNum + "c" + row;
@@ -75,18 +77,34 @@ function UpdateRow(rowNum, guess) {
 
         txt.children[0].textContent = c;
 
-        if (word.charAt(row - 1) === c) {
-            //txt.classList.remove("letter-container");
+        if (tempWord.charAt(row - 1) === c) {
             txt.classList.add("green");
+            
+            tempWord = tempWord.replaceAt(row - 1, "-")
         }
-        else if (word.includes(c)) {
-            //txt.classList.remove("letter-container-orange");
-            txt.classList.add("orange");
-        }
+
+        console.log(tempWord);
 
         row++;
     }
 
+    row = 1
+    for (const c of guess) {
+        const elemId = "r" + rowNum + "c" + row;
+        const txt = document.getElementById(elemId);
+
+        txt.children[0].textContent = c;
+
+        if (tempWord.includes(c)) {
+            //txt.classList.remove("letter-container-orange");
+            txt.classList.add("orange");
+            tempWord = tempWord.replace(c, "-");
+        }
+
+        console.log(tempWord);
+
+        row++;
+    }
 }
 
 function checkWord(wordToCheck) {
