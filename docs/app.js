@@ -127,3 +127,7 @@ function showError(errorText) {
     ErrorMessage.textContent = errorText;
     ErrorMessage.style.visibility = "visible";
 }
+
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
