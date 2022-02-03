@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="black">
-    <link href="styles.css?version=3.3.2" rel="stylesheet">
+    <link href="styles.css?version=3.3.3" rel="stylesheet">
     <!-- <link href="test.css" rel="stylesheet"> -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script defer src="app.js?version=3.3.2"></script>
+    <script defer src="app.js?version=3.3.3"></script>
 
-    <link rel="manifest" href="manifest.json?version=3.3.2">
+    <link rel="manifest" href="manifest.json?version=3.3.3">
 </head>
 
 <body class="bg-neutral-900">
@@ -20,7 +20,7 @@
         <h1>Welcome to FlyeWords!</h1>
     </div>
 
-    <div class="md:block"> 
+    <div class="md:block">
         <!-- <div class="hidden md:block">  -->
 
         <div class="container mt-10 max-w-4xl mx-auto">
@@ -120,10 +120,14 @@
             </form>
             <p class="text-red-500 font-bold invisible mt-3" id="error-msg">Error</p>
             <input type="button" id="play-again" value="Play Again"
-                    class="bg-green-600 mx-auto font-bold rounded-md p-2 cursor-pointer text-white hidden"
-                    onclick="location.reload()">
+                class="bg-green-600 mx-auto font-bold rounded-md p-2 cursor-pointer text-white hidden"
+                onclick="location.reload()">
         </div>
 
+    </div>
+
+    <div class="fixed text-center bottom-0 w-[100%] mb-5">
+        <p class="text-white">Made by <a class="font-bold" target="_blank" href="https://flye001.com">Flye001</a></p>
     </div>
 
     <script>
