@@ -1,6 +1,8 @@
 const apiLinkBase = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 let word = "";
 let allWord;
+const GameArea = document.getElementById("GameArea");
+const MenuButtons = document.getElementById("menu-buttons");
 const ErrorMessage = document.getElementById("error-msg");
 const guessForm = document.getElementById("guess-form");
 const guessInput = document.getElementById("guess-value");
@@ -9,32 +11,48 @@ let CurrentGuess = 1;
 
 const skipWordCheck = false;
 
-// Pick a word
-
 fetch("all-words.txt")
     .then(response => response.text())
     .then((data) => {
         allWord = data;
-        ChoseWord();
+        MenuButtons.style.display = "grid";
     });
 
-function ChoseWord() {
+function ChoseRandomWord() {
     fetch('words.txt')
-    .then(response => response.text())
-    .then((data) => {
-        const myArray = data.split("\n");
-        word = myArray[Math.floor(Math.random() * myArray.length)].toUpperCase().trim();
+        .then(response => response.text())
+        .then((data) => {
+            const myArray = data.split("\n");
+            word = myArray[Math.floor(Math.random() * myArray.length)].toUpperCase().trim();
 
-        if (!allWord.includes(word.toLowerCase())) {
-            console.log("Word is invalid: " + word);
-            ChoseWord();
-        }
-        else {
-            console.log("The word is " + word);
-            guessForm.style.visibility = "visible";
-        }
-            
-    });
+            if (!allWord.includes(word.toLowerCase())) {
+                console.log("Word is invalid: " + word);
+                ChoseWord();
+            }
+            else {
+                console.log("The word is " + word);
+                GameArea.style.display = "block";
+                MenuButtons.style.display = "none";
+                guessForm.style.visibility = "visible";
+            }
+        });
+}
+
+function ChoseCustomWord() {
+    word = document.getElementById("custom-word-input").value.toUpperCase();
+
+    if (word.length != 5) {
+        console.log("Word wrong length");
+    }
+    else if (!allWord.includes(word.toLowerCase())) {
+        console.log("This is not a word!");
+    }
+    else {
+        console.log("The word is " + word);
+        GameArea.style.display = "block";
+        MenuButtons.style.display = "none";
+        guessForm.style.visibility = "visible";
+    }
 }
 
 function SubmitGuess() {
@@ -52,7 +70,7 @@ function SubmitGuess() {
     UpdateRow(CurrentGuess, guess);
     CurrentGuess++;
     guessInput.value = "";
-    
+
     if (guess === word) {
         guessForm.style.display = "none";
         playAgain.style.display = "block";
@@ -106,15 +124,6 @@ function UpdateRow(rowNum, guess) {
 function checkWord(wordToCheck) {
     if (skipWordCheck) return true;
 
-    // const url = apiLinkBase + wordToCheck
-    // const xmlHttp = new XMLHttpRequest();
-    // xmlHttp.open("GET", url, false); // false for synchronous request
-    // xmlHttp.send(null);
-    // const resp = JSON.parse(xmlHttp.responseText)
-    // console.log(resp);
-    // if (resp[0] === undefined) return false;
-    // else return true;
-
     if (allWord.includes(wordToCheck.toLowerCase())) return true;
     else return false;
 }
@@ -124,6 +133,6 @@ function showError(errorText) {
     ErrorMessage.style.visibility = "visible";
 }
 
-String.prototype.replaceAt = function(index, replacement) {
+String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }

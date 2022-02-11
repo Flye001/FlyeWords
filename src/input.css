@@ -14,7 +14,10 @@
     @apply bg-orange-500
 }
 
-
 .letter-text {
     @apply mt-1 text-white text-lg sm:text-3xl sm:mt-2 md:mt-3 md:text-5xl
+}
+
+.menu-button {
+    @apply bg-green-700 text-white font-bold p-2 rounded-lg cursor-pointer
 }
