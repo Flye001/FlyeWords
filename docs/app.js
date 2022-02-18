@@ -38,6 +38,18 @@ function ChoseRandomWord() {
         });
 }
 
+function HardMode() {
+
+    const myArray = allWord.split("\n");
+    word = myArray[Math.floor(Math.random() * myArray.length)].toUpperCase().trim();
+
+    console.log("The word is " + word);
+    GameArea.style.display = "block";
+    MenuButtons.style.display = "none";
+    guessForm.style.visibility = "visible";
+
+}
+
 function ChoseCustomWord() {
     word = document.getElementById("custom-word-input").value.toUpperCase();
 
